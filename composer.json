@@ -1,0 +1,25 @@
+{
+  "name": "zhanshop/kernel",
+  "description": "张启全研发的PHP框架",
+  "keywords": [
+    "zhanshop"
+  ],
+  "homepage": "http://www.zhanshop.cn/",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "张启全",
+      "email": "768617998@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0.0",
+    "guzzlehttp/guzzle": "^7.4",
+    "topthink/think-orm": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "kernel\\": ""
+    }
+  }
+}
