@@ -142,15 +142,17 @@ class Curl
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,false);
 
-        if($data){
+
+        if($this->config['upload']){
+            curl_setopt($ch, CURLOPT_POST, 1);
+            if(is_array($data)) $this->config['upload'] = array_merge($this->config['upload'], $data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $this->config['upload']);
+        }elseif($data){
             curl_setopt($ch, CURLOPT_POST, 1);
             if(is_array($data)){
                 $data = json_encode($data, JSON_UNESCAPED_UNICODE);
             }
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        }elseif($this->config['upload']){
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $this->config['upload']);
         }
 
         if($contentType) $this->config['header'][] = 'Content-Type'.':'.$contentType;
